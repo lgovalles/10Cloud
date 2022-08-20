@@ -1,0 +1,17 @@
+{
+  "name": "10cloudtest",
+  "version": "1.0.0",
+  "description": "Test suite for 10cloud page",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^6.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "cy:run": "cypress run",
+    "cy:ui": "cypress run --spec 'cypress/integration/UI/*.spec.js'",
+    "cy:api": "cypress run --spec 'cypress/integration/API/*.spec.js'"
+  },
+  "author": "Luis G Ovalles",
+  "license": "ISC"
+}
