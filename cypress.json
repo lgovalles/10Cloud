@@ -1,4 +1,4 @@
 {
     "baseUrl":"https://10clouds.com/",
-    "defaultCommandTimeout": 30000
+    "defaultCommandTimeout": 50000
 }

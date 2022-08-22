@@ -46,6 +46,9 @@ describe('Verify Open roles for QA', () => {
 
     it('Test - filter for role QA', function () {
 
+        cy.intercept('/').as('page')
+        cy.wait('@page')
+
         cy.log("Verify that the Careers option is in the menu and can click on it")
         cy.get(":nth-child(8) > .Link__NavLink-sc-1ryxvh0-1 > span")
             .should('be.visible').and('contain.text', this.data.career)
@@ -63,10 +66,22 @@ describe('Verify Open roles for QA', () => {
             .should("be.visible").and('have.text','All departmentsDepartment')
             .click()
 
-        cy.get('ul > li:nth-child(11)')
-            .should('be.visible')
-            .and('contain.text', 'QA')
-            .click()
+        let isQa = false    
+        cy.get('#job-offers__search > div > div:nth-child(1) > ul > li').each(function (title, index) {
+            if (title.text() === this.data.role) {
+                isQa=true
+
+                cy.get(`#job-offers__search > div > div:nth-child(1) > ul > li:nth-child(${index+1})`)
+                    .should('be.visible')
+                    .and('contain.text', this.data.role)
+                    .click()
+            }
+        }).then(() => {
+            if (!isQa){
+                expect(true, "QA is not in the list").to.equal(false)
+            }
+            
+        })
 
         cy.log("Verify the job offer has QA Automation or QA Engineer")
         let ttl = " "
@@ -77,7 +92,6 @@ describe('Verify Open roles for QA', () => {
                     qaRole.push(title.text())
                 }
         }).then(() => {
-
             expect(qaRole).length.greaterThan(0)
         })
     })
