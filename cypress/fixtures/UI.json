@@ -1,8 +1,7 @@
 {
   "career": "Careers",
   "btnposition": "See open positions",
-  "jobTitle": "Senior QA Automation Engineer",
+  "jobTitle": ["Senior QA Automation Engineer"],
   "role": "QA",
-  "jobTitleDes1":"QA Automation",
-  "jobTitleDes2":"QA Engineer"
+  "jobTitleDes":["QA Automation","QA Engineer"]
 }
